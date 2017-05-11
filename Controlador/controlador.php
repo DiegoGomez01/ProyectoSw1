@@ -16,7 +16,10 @@ class controlador{
             echo json_encode(array("ok" => 0, "mensaje" => $e->getMessage()));
         }
     }
-
+    /*
+    asdasdasdasdasdasdasdasd
+    estos es asdasdasd
+    */
     public function RegistrarProducto()
     {
         $producto=$_REQUEST['producto'];
