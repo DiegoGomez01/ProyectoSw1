@@ -1,4 +1,5 @@
 // JavaScript Document);
+var contListaPedido = 0;
 function aumentarProducto(){
 	document.location.href = "aumentarProducto.html";
 }
@@ -58,11 +59,12 @@ function consultarDatosInventario() {
 		var indice = document.getElementById("listaDesplegable").value;
 		  $.post("../Controllers/Controladora.php",{Accion:5,id:indice,cInicial:'',cingresada:'',cActual:'',cVendido:'',Vtotal:''},function(Respuesta)
    {
-	   
-	   if(Object.keys(Respuesta).length>150){
+	   if(Object.keys(Respuesta).length>200){
 		var datos = jQuery.parseJSON(Respuesta);
 			var nombre = document.getElementById("nombreProducto");
 			nombre.value = datos[0].nombre;
+			var precio = document.getElementById("entryPrecio");
+			precio.value = datos[0].precio;
 			var cantidad = document.getElementById("cantidadProductoInventario");
 			cantidad.value = datos[0].cantidad_actual;
 			
@@ -136,3 +138,120 @@ function eliminarProductos() {
 		alert ("Debe seleccionar un producto primero");
 		}
 }
+
+
+function AnadirLista() {
+	var indice = document.getElementById("listaDesplegable").value;
+	var idCantidad;
+	var cantidad=document.getElementById("cantidadProductoSolicitado").value;
+	if(indice=='no' || cantidad==''){
+		alert("Ingrese los datos completos para Añadir a lista");	
+	}else{
+    $.post("../Controllers/Controladora.php",{Accion:5,id:indice,cInicial:'',cingresada:'',cActual:'',cVendido:'',Vtotal:''}, function (respuesta) {
+            var datos = jQuery.parseJSON(respuesta);
+            for (var i in datos) {
+                var elementotr = document.createElement('tr');
+
+		var elementotd = document.createElement('td');
+                elementotr.appendChild(elementotd);
+                var texto = document.createTextNode(datos[i].id);
+                elementotd.appendChild(texto);
+
+                var elementotd = document.createElement('td');
+                elementotr.appendChild(elementotd);
+                var texto = document.createTextNode(datos[i].nombre);
+                elementotd.appendChild(texto);
+
+                var elementotd = document.createElement('td');
+                elementotr.appendChild(elementotd);
+                var texto = document.createTextNode(cantidad);
+                elementotd.appendChild(texto);
+
+                var elementotd = document.createElement('td');
+                elementotr.appendChild(elementotd);
+                var texto = document.createTextNode(parseInt(datos[i].precio)*parseInt(cantidad));
+                elementotd.appendChild(texto);
+
+		document.getElementById("total").value=parseInt(document.getElementById("total").value)+(parseInt(datos[i].precio)*parseInt(cantidad));
+
+                var elementotd = document.createElement('td');
+                elementotr.appendChild(elementotd);
+                var span = document.createElement('span');
+		contListaPedido++;
+                span.innerHTML = '<button onclick="EliminarLista('+contListaPedido+')">&nbsp;Eliminar</button>';
+                elementotd.appendChild(span);
+
+                var obj = document.getElementById('Contenido');
+                obj.appendChild(elementotr);
+	}
+    });
+}
+}//check
+
+function EliminarLista(contFila){
+var x = document.getElementById("listaPedido").rows[contFila].cells.length;
+for (var k = 0; k<x;k++){
+	var u = document.getElementById("listaPedido").rows[contFila].cells;
+    	u[k].innerHTML = "";
+}
+var tableReg = document.getElementById('listaPedido');
+var cellsOfRow="";
+var suma=0;
+if(tableReg.rows.length>0){
+	for (var i = 1; i < tableReg.rows.length; i++)
+	{
+		cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+		for (var j = 0; j < cellsOfRow.length; j++)
+		{
+			if (j==3)
+			{
+				if(cellsOfRow[j].textContent!='' && cellsOfRow[j].textContent!='0'){
+					suma += parseInt(cellsOfRow[j].textContent);
+				}
+			}
+		}
+	}
+	document.getElementById("total").value=suma;
+}else{
+document.getElementById("total").innerHTML=0;
+}
+}
+
+function RegistrarPedido(){
+if(document.getElementById("total").value!='0'){
+	var tableReg = document.getElementById('listaPedido');
+	var searchText = document.getElementById('searchTerm').value.toLowerCase();
+	var cellsOfRow="";
+	var found=false;
+	var compareWith="";
+
+	// Recorremos todas las filas con contenido de la tabla
+	for (var i = 1; i < tableReg.rows.length; i++)
+	{
+		cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
+		found = false;
+		// Recorremos todas las celdas
+		for (var j = 0; j < cellsOfRow.length && !found; j++)
+		{
+			compareWith = cellsOfRow[j].innerHTML.toLowerCase();
+			// Buscamos el texto en el contenido de la celda
+			if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1))
+			{
+				found = true;
+			}
+		}
+		if(found)
+		{
+			tableReg.rows[i].style.display = '';
+		} else {
+			// si no ha encontrado ninguna coincidencia, esconde la
+			// fila de la tabla
+			tableReg.rows[i].style.display = 'none';
+		}
+	}
+}else{
+	alert("Adiciones pedidos a la lista");
+}
+}
+
+

@@ -8,7 +8,7 @@
 <script src="../Includes/jquery-2.1.0.min.js" language="javascript1.5"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta charset="utf-8">
-<title>Registro de nuevos productos</title>
+<title>Aumento Inventario</title>
 </head>
 <body onLoad="metodoLlenarSelect()">
 <div class="container" style="height:100vh">
@@ -36,11 +36,12 @@
 </tr>
 <tr>
             <td align="right"><p style="font-size:160%; font-family:courier;">Producto:</p></td>
-            <td><input type="text" id="nombreProducto" class="Datos2" autocomplete="off" placeholder="Nombre Producto..."></td>
+            <td><input type="text" id="nombreProducto" class="Datos2" autocomplete="off" placeholder="Nombre Producto..." disabled="true"></td>
         </tr>
          <tr>
             <td align="right"><p style="font-size:160%; font-family:courier;">Cantidad Inventario:</p></td>
-            <td><input type="text" id="cantidadProductoInventario" class="Datos2" autocomplete="off" placeholder="Cantidad Producto..."></td>
+            <td><input type="text" id="cantidadProductoInventario" class="Datos2" autocomplete="off" placeholder="Cantidad Producto..." disabled="true"></td>
+            <input type="hidden" id="entryPrecio">
         </tr>
         </table></div>
     </div>
