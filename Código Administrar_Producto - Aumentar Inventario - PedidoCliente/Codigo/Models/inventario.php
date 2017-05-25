@@ -48,12 +48,7 @@ var $venta_total;
 		$Conectar= new Conexion();
 		$Conectar->conectar();
 		$Sql="select cantidad_actual from inventario where id_producto= $this->id_producto";
-		//$Sql="update inventario set cantidad_ingresada = $this->cant_ingresada where id_producto= $this->id_producto";
-		//$resultado = pg_query($Conectar->Conexion,$Sql);
 		$resultado = pg_query($Conectar->Conexion,$Sql);
-		//$response=array("cantidad_actual"=>"".pg_result($resultado,0,0));
-		
-		//$M[$cont]=$response;
 		$num=pg_result($resultado,0,0);
 		$num=($this->cant_ingresada)+$num;
 		$Sql1="update inventario set cantidad_ingresada = $this->cant_ingresada where id_producto= $this->id_producto";
@@ -63,6 +58,31 @@ var $venta_total;
 		$resultado2 = pg_query($Conectar->Conexion,$Sql2);
 		
 		if(!$resultado or !$resultado1  or !$resultado2){
+		echo 'Error';
+		}else{
+			echo 'Exito';
+		}
+	}
+
+	public function regPedCliente(){
+		$Conectar= new Conexion();
+		$Conectar->conectar();
+
+		$Sql="select cantidad_vendido from inventario where id_producto= $this->id_producto";
+		$resultado = pg_query($Conectar->Conexion,$Sql);
+		$num=(int)pg_result($resultado,0,0)+(int)$this->cant_vendido;
+
+		$Sql="update inventario set cantidad_vendido=$num where id_producto= $this->id_producto";
+		$resultado1 = pg_query($Conectar->Conexion,$Sql);
+
+
+		$Sql="select cantidad_actual from inventario where id_producto= $this->id_producto";
+		$resultado2 = pg_query($Conectar->Conexion,$Sql);
+		$num2=(int)pg_result($resultado2,0,0)-(int)$this->cant_vendido;
+
+		$Sql="update inventario set cantidad_actual=$num2 where id_producto= $this->id_producto";
+		$resultado3 = pg_query($Conectar->Conexion,$Sql);
+		if(!$resultado or !$resultado1 or !$resultado2 or !$resultado3){
 		echo 'Error';
 		}else{
 			echo 'Exito';

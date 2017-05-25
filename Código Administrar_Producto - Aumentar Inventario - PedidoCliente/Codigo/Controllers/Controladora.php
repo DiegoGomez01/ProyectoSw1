@@ -43,6 +43,12 @@ $Product= new producto($Datos);
 $Product->EliminarProducto();	
 }	
 
+public function registrarPeridoCliente($Datos)
+{
+$inventario= new inventario($Datos);	
+$inventario->regPedCliente();	
+}
+
 
 }
 
@@ -52,22 +58,25 @@ $Obj= new controladora();
 if ($_REQUEST['Accion'] == 0){
 	$Obj->CrearProducto($Datos);
 	}
-	if ($_REQUEST['Accion'] == 1){
+else if ($_REQUEST['Accion'] == 1){
 	$Obj->ConsultarDatosParaSelect($Datos);
 	}
-if ($_REQUEST['Accion'] == 2){
+else if ($_REQUEST['Accion'] == 2){
 	$Obj->ConsultarDatosProductoNombre($Datos);
 	}
-if ($_REQUEST['Accion'] == 3){
+else if ($_REQUEST['Accion'] == 3){
 	$Obj->EditarProductos($Datos);
 	}
-if ($_REQUEST['Accion'] == 4){
+else if ($_REQUEST['Accion'] == 4){
 	$Obj->EliminarProductos($Datos);
 	}
-if ($_REQUEST['Accion'] == 5){
+else if ($_REQUEST['Accion'] == 5){
 	$Obj->ConsultarDatosInventario($Datos);
 	}
-if ($_REQUEST['Accion'] == 6){
+else if ($_REQUEST['Accion'] == 6){
 	$Obj->aumentarInventarioProducto($Datos);
+	}
+else if ($_REQUEST['Accion'] == 7){
+	$Obj->registrarPeridoCliente($Datos);
 	}
 ?>

@@ -81,7 +81,7 @@ function aumentarInventario() {
 		var cantIng = document.getElementById("cantidadProductoAumentar").value;
 		var cantOld = document.getElementById("cantidadProductoInventario").value;
 		var cantNew = parseInt(cantIng) + parseInt(cantOld);
-		if(nombre!='' && cantIng!='' && cantOld!=''){
+		if(nombre!='' && cantIng!='' && cantOld!='' && !isNaN(parseInt(cantIng))){
 		alert("Confirmar....\n"+
 			  "Nombre: "+nombre+"\n"+
 			  "Cantidad Ingresada"+cantIng+"\n"+
@@ -144,7 +144,7 @@ function AnadirLista() {
 	var indice = document.getElementById("listaDesplegable").value;
 	var idCantidad;
 	var cantidad=document.getElementById("cantidadProductoSolicitado").value;
-	if(indice=='no' || cantidad==''){
+	if(indice=='no' || cantidad=='' || isNaN(parseInt(cantidad)) || parseInt(cantidad)>parseInt(document.getElementById("cantidadProductoInventario").value)){
 		alert("Ingrese los datos completos para Añadir a lista");	
 	}else{
     $.post("../Controllers/Controladora.php",{Accion:5,id:indice,cInicial:'',cingresada:'',cActual:'',cVendido:'',Vtotal:''}, function (respuesta) {
@@ -219,36 +219,41 @@ document.getElementById("total").innerHTML=0;
 
 function RegistrarPedido(){
 if(document.getElementById("total").value!='0'){
-	var tableReg = document.getElementById('listaPedido');
-	var searchText = document.getElementById('searchTerm').value.toLowerCase();
-	var cellsOfRow="";
-	var found=false;
-	var compareWith="";
 
-	// Recorremos todas las filas con contenido de la tabla
+	var tableReg = document.getElementById('listaPedido');
+	var cellsOfRow="";
+	var Vid="";
+	var bandera="";
+	var Vcant=0;
+
 	for (var i = 1; i < tableReg.rows.length; i++)
 	{
 		cellsOfRow = tableReg.rows[i].getElementsByTagName('td');
-		found = false;
-		// Recorremos todas las celdas
-		for (var j = 0; j < cellsOfRow.length && !found; j++)
+		for (var j = 0; j < cellsOfRow.length; j++)
 		{
-			compareWith = cellsOfRow[j].innerHTML.toLowerCase();
-			// Buscamos el texto en el contenido de la celda
-			if (searchText.length == 0 || (compareWith.indexOf(searchText) > -1))
-			{
-				found = true;
+			if(cellsOfRow[j].textContent==''){
+				bandera='NO';
+				break;			
+			}else{
+				if(j==0){
+					Vid=cellsOfRow[j].textContent;
+				}else if (j==2){
+					Vcant=parseInt(cellsOfRow[j].textContent);
+				}
 			}
 		}
-		if(found)
-		{
-			tableReg.rows[i].style.display = '';
-		} else {
-			// si no ha encontrado ninguna coincidencia, esconde la
-			// fila de la tabla
-			tableReg.rows[i].style.display = 'none';
+		if(bandera!='NO'){
+			$.post("../Controllers/Controladora.php",{Accion:7,id:Vid,cInicial:'',cingresada:'',cActual:'',cVendido:Vcant,Vtotal:''},function(Respuesta){
+			if(Respuesta!='Exito'){
+				alert("Lo sentimos, ha ocurrido un error en uno de los registros.");
+			}});
 		}
+		bandera="";
 	}
+
+alert("Se ha registrado el pedido con éxito.");
+document.location.href = "RegistroPedidoCliente.html";
+
 }else{
 	alert("Adiciones pedidos a la lista");
 }
