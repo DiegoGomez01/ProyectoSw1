@@ -19,7 +19,7 @@ public function RegistrarProductos()
 {
 $Conectar= new Conexion();
 $Conectar->conectar(); 
-$Sql= "insert into productos values (default,'$this->nombre',$this->precio)";
+$Sql= "insert into producto values (default,'$this->nombre',$this->precio)";
 pg_query($Conectar->Conexion,$Sql);
 }
 
@@ -27,7 +27,7 @@ public function ConsultarDatosSelect()
 {
 $Conectar= new Conexion();
 $Conectar->conectar();
-$Sql="select * from productos ORDER BY id ASC";
+$Sql="select * from producto";
 $resultado = pg_query($Conectar->Conexion,$Sql);
 $Filas=pg_numrows($resultado);
 for($cont=0;$cont<$Filas;$cont++)
@@ -45,7 +45,7 @@ public function ConsultarProductosPorNombre()
 {
 $Conectar= new Conexion();
 $Conectar->conectar();
-$Sql="select * from productos where id=$this->id ORDER BY id ASC;";
+$Sql="select * from producto where id=$this->id ORDER BY id ASC;";
 $resultado = pg_query($Conectar->Conexion,$Sql);
 $Filas=pg_numrows($resultado);
 for($cont=0;$cont<$Filas;$cont++)
@@ -63,7 +63,7 @@ public function EditarProducto()
 {
 $Conectar= new Conexion();
 $Conectar->conectar();
-$Sql="update productos set nombre='$this->nombre',precio=$this->precio where id=$this->id ;";
+$Sql="update producto set nombre='$this->nombre',precio=$this->precio where id=$this->id ;";
 pg_query($Conectar->Conexion,$Sql);	
 }
 
@@ -71,7 +71,7 @@ public function EliminarProducto()
 {
 $Conectar= new Conexion();
 $Conectar->conectar();
-$Sql="delete from productos where id=$this->id ;";
+$Sql="delete from producto where id=$this->id ;";
 pg_query($Conectar->Conexion,$Sql);	
 }
 

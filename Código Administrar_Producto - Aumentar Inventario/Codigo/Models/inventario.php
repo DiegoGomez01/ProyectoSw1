@@ -24,7 +24,7 @@ var $venta_total;
 	{
 	$Conectar= new Conexion();
 	$Conectar->conectar();
-	$Sql="select * from productos inner join inventario on inventario.id_producto=productos.id where productos.id=$this->id_producto";
+	$Sql="select * from producto inner join inventario on inventario.id_producto=producto.id where producto.id=$this->id_producto";
 	$resultado = pg_query($Conectar->Conexion,$Sql);
 	$Filas=pg_numrows($resultado);
 	for($cont=0;$cont<$Filas;$cont++)

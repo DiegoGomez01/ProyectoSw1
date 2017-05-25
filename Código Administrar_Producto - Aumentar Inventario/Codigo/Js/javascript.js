@@ -25,14 +25,12 @@ function RegistroProductos()
 }
 
 function metodoLlenarSelect() {
-	
-	  $.post("../Controllers/Controladora.php",{Accion:1,id:'',nombre:'',precio:''},function(Respuesta)
-
-   {
+	  $.post("../Controllers/Controladora.php",{Accion:1,id:'',nombre:'',precio:''},function(Respuesta){
 		var datos = jQuery.parseJSON(Respuesta);
 		var x = document.getElementById("listaDesplegable");
 	   for (var i in datos)
-		{ 
+		{
+	
     var c = document.createElement("option");
 	    c.text = datos[i].nombre;
 		c.value = datos[i].id;

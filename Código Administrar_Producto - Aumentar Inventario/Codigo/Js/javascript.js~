@@ -1,5 +1,7 @@
 // JavaScript Document);
-
+function aumentarProducto(){
+	document.location.href = "aumentarProducto.html";
+}
 function RegistroProductos()
 {
 	
@@ -23,14 +25,13 @@ function RegistroProductos()
 }
 
 function metodoLlenarSelect() {
-	
-	  $.post("../Controllers/Controladora.php",{Accion:1,id:'',nombre:'',precio:''},function(Respuesta)
-
-   {
+	  $.post("../Controllers/Controladora.php",{Accion:1,id:'',nombre:'',precio:''},function(Respuesta){
+alert("HOLAS");
 		var datos = jQuery.parseJSON(Respuesta);
 		var x = document.getElementById("listaDesplegable");
 	   for (var i in datos)
-		{ 
+		{
+	
     var c = document.createElement("option");
 	    c.text = datos[i].nombre;
 		c.value = datos[i].id;
@@ -51,7 +52,57 @@ function consultarDatosProductos() {
 			var precio = document.getElementById("entryPrecio2");
 		precio.value = datos[0].precio;
 	   });
+}
 
+function consultarDatosInventario() {
+		var x = document.getElementById("listaDesplegable").value;
+		var indice = document.getElementById("listaDesplegable").value;
+		  $.post("../Controllers/Controladora.php",{Accion:5,id:indice,cInicial:'',cingresada:'',cActual:'',cVendido:'',Vtotal:''},function(Respuesta)
+   {
+	   
+	   if(Object.keys(Respuesta).length>150){
+		var datos = jQuery.parseJSON(Respuesta);
+			var nombre = document.getElementById("nombreProducto");
+			nombre.value = datos[0].nombre;
+			var cantidad = document.getElementById("cantidadProductoInventario");
+			cantidad.value = datos[0].cantidad_actual;
+			
+	   }else{
+		   	alert("No se encuentran datos de inventario registrado para el producto.");
+		   }
+		
+	   });
+}
+
+
+function aumentarInventario() {
+	    var nombre = document.getElementById("nombreProducto").value;
+		var cantIng = document.getElementById("cantidadProductoAumentar").value;
+		var cantOld = document.getElementById("cantidadProductoInventario").value;
+		var cantNew = parseInt(cantIng) + parseInt(cantOld);
+		if(nombre!='' && cantIng!='' && cantOld!=''){
+		alert("Confirmar....\n"+
+			  "Nombre: "+nombre+"\n"+
+			  "Cantidad Ingresada"+cantIng+"\n"+
+			  "cantidad Total"+cantNew);
+			 
+		var indice = document.getElementById("listaDesplegable").value;
+		$.post("../Controllers/Controladora.php",{Accion:6,id:indice,cInicial:'',cingresada:cantIng,cActual:'',cVendido:'',Vtotal:''},function(Respuesta){
+			alert(Respuesta);
+		if(Resultado='Exito'){
+			document.getElementById("nombreProducto").value = "";
+			document.getElementById("cantidadProductoAumentar").value = "";
+			document.getElementById("cantidadProductoInventario").value = "";
+			alert("Se ha registrado con éxito el cambio");
+		}else{
+			alert("Ha surgido un error. Intentelo de nuevo");
+			}
+	   });
+	   
+	   }
+	   else{
+		   alert("Error, por favor corregir los datos")
+		   }
 }
 
 function editarProductos() {
@@ -69,6 +120,8 @@ function editarProductos() {
 		}
 
 }
+
+
 
 function eliminarProductos() {
 		var nombreProducto = document.getElementById("entryNombre2").value;

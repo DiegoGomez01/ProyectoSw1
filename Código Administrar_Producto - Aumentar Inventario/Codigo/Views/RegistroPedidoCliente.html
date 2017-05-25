@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<link href="../Includes/Boostrap/css/bootstrap.css" rel="stylesheet">
+<link href="../Css/HojasPagina.css" rel="stylesheet">
+<link href="../Css/Animaciones.css" rel="stylesheet">
+<script src="../Js/javascript.js" language="javascript1.5"></script>
+<script src="../Includes/jquery-2.1.0.min.js" language="javascript1.5"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<title>Registro Pedido Clientes</title>
+</head>
+<body onLoad="metodoLlenarSelect()">
+<div class="container" style="height:100vh">
+    <nav class="col-xs-12 nav" id="entrada"></nav>
+    <header class="col-xs-12 header nopadding"><img src="../Imagenes/Banners/cropped-banner.jpg" width="100%" height="100%"></a></header>
+    <section class="col-xs-12 section">
+        &nbsp;
+        <table width="100%">
+                <tr>
+                    <td width="50%">
+                        <table width="100%">
+                            <div align="center">
+                                <select onchange="consultarDatosInventario()" id="listaDesplegable" name="select" style="width: 400px;">
+                                <option disabled="true" selected="selected"  value="no">Seleccione una producto...</option> 
+                                </select>
+                            </div>
+                                &nbsp;
+                            <tr>
+                                <td align="center"><p style="font-size:160%; font-family:courier;">Producto:</p></td>
+                                <td><input type="text" id="nombreProducto" class="Datos2" autocomplete="off" placeholder="Nombre Producto..."></td>
+                            </tr>
+                            <tr>
+                                <td align="center"><p style="font-size:160%; font-family:courier;">Precio:</p></td>
+                                <td><input type="text" id="entryPrecio" class="Datos" autocomplete="off" placeholder="Precio producto..."></td>
+                            </tr>
+                            <tr>
+                                <td align="center"><p style="font-size:160%; font-family:courier;">Cantidad Inventario:</p></td>
+                                <td><input type="text" id="cantidadProductoInventario" class="Datos2" autocomplete="off" placeholder="Cantidad Producto..."></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h1 align="center">----------------------</h1>
+                                </td>
+                                <td>
+                                    <h1 align="center">------------------------</h1>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="center"><p style="font-size:160%; font-family:courier;">Cantidad Solicitada:</p></td>
+                                <td><input type="text" id="cantidadProductoAumentar" class="Datos2" autocomplete="off" placeholder="Cantidad Solicitada..."></td>
+                            </tr>
+                            
+                        </table>
+                        &nbsp;
+                        <div align="center">
+                                <button id="btnAumentarProducto" onClick="aumentarInventario()"> Añadir a Lista</button>
+                        </div>
+                    </td>
+                    <td>
+                        <h3 align="center">Lista de Pedido</h3>
+                        <table width="100%" id="listaPedido">
+
+
+
+                        </table>
+                        <div align="center">
+                            <p style="font-size:130%; font-family:courier;">TOTAL:<input type="text" id="cantidadProductoAumentar" class="Datos2" autocomplete="off" placeholder="Total...">
+                        </p></div>
+                        
+                        <div align="center">
+                            <button align="center" id="btnRegistrarPedido" onClick=""> Registar Pedido</button> 
+                        </div>           
+                    </td>
+                </tr>
+        </table>
+    </section>
+</div>
+</body>
+</html>
