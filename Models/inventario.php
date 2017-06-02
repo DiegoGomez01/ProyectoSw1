@@ -19,6 +19,9 @@ var $venta_total;
 		$this->cant_vendido = $cVendido;
 		$this->venta_total = $Vtotal;
 	}
+	public function prueba(){
+		return 'Exito';
+	}
 	
 	public function ConsultarDatosInventario()
 	{

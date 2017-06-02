@@ -6,7 +6,6 @@ var $id;
 var $nombre;
 var $precio;
 
-
 public function __construct($Datos)
 {
 extract($Datos);
