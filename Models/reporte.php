@@ -43,7 +43,7 @@ class reporte {
             $M[$i] = $res;
         }
         $res = $M;
-        echo json_encode($res);
+        return $res;
     }
 
     function hayRegistroReporte() {
@@ -52,9 +52,9 @@ class reporte {
         $Sql = "select * from reporte_diario where \"fecha\"='$this->fecha';";
         $result = pg_query($conect->Conexion, $Sql);
         if (pg_num_rows($result) > 0) {
-            echo 'HAY REGISTROS';
+            return 'HAY REGISTROS';
         } else {
-            echo 'NO HAY REGISTROS';
+            return 'NO HAY REGISTROS';
         }
     }
 }

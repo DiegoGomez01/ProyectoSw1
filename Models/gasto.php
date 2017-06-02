@@ -35,7 +35,7 @@ class gasto {
             $M[$i] = $res;
         }
         $res = $M;
-        echo json_encode($res);
+        return $res;
     }
 
     function hayRegistroGastos() {
@@ -44,9 +44,9 @@ class gasto {
         $Sql = "select * from gasto_diario where \"fecha\"='$this->fecha';";
         $result = pg_query($conect->Conexion, $Sql);
         if (pg_num_rows($result) > 0) {
-            return TRUE;
+            return "Exito";
         } else {
-            return FALSE;
+            return "Error";
         }
     }
 }

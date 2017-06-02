@@ -19,9 +19,6 @@ var $venta_total;
 		$this->cant_vendido = $cVendido;
 		$this->venta_total = $Vtotal;
 	}
-	public function prueba(){
-		return 'Exito';
-	}
 	
 	public function ConsultarDatosInventario()
 	{
@@ -30,6 +27,7 @@ var $venta_total;
 	$Sql="select * from producto inner join inventario on inventario.id_producto=producto.id where producto.id=$this->id_producto";
 	$resultado = pg_query($Conectar->Conexion,$Sql);
 	$Filas=pg_numrows($resultado);
+	$M = array();
 	for($cont=0;$cont<$Filas;$cont++)
 			 {
 			 $response=array("id"=>"".pg_result($resultado,$cont,0),
@@ -45,7 +43,8 @@ var $venta_total;
 							 ) ;
 			 $M[$cont]=$response;
 			 }
-		echo json_encode($M);
+		//echo json_encode($M);
+			 return $M;
 	}
 	public function aumentarInventario(){
 		$Conectar= new Conexion();
@@ -61,9 +60,9 @@ var $venta_total;
 		$resultado2 = pg_query($Conectar->Conexion,$Sql2);
 		
 		if(!$resultado or !$resultado1  or !$resultado2){
-		echo 'Error';
+		return 'Error';
 		}else{
-			echo 'Exito';
+			return 'Exito';
 		}
 	}
 
@@ -86,9 +85,9 @@ var $venta_total;
 		$Sql="update inventario set cantidad_actual=$num2 where id_producto= $this->id_producto";
 		$resultado3 = pg_query($Conectar->Conexion,$Sql);
 		if(!$resultado or !$resultado1 or !$resultado2 or !$resultado3){
-		echo 'Error';
+		return 'Error';
 		}else{
-			echo 'Exito';
+			return 'Exito';
 		}
 	}
 	
