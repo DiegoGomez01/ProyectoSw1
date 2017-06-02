@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Reporte Detallado</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../Js/jquery-3.2.1.js" language="javascript1.5"></script>
+<script src="../Js/Javascript2.js" language="javascript1.5"></script>
+<link rel="stylesheet" href="../Includes/Bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="../Css/estilosReportes.css">
+</head>
+
+<body onLoad="mostrarReporteDetallado()">
+<div id="containerG" class="container">
+  <section id="sectionRD">
+    <div id="containerTitulo">
+      <h3 id="fechaRep">Fecha: </h3>
+      <h1>
+      Reporte Detallado de Gastos y Ventas
+      </h1>
+    </div>
+    <h2>Inventario:</h2>
+    <table class="table table-striped" width="150" border="0">
+      <tbody id="tbodyinv">
+        <tr>
+          <td class="col-lg-2"><h3>Id del Producto</h3></td>
+          <td class="col-lg-2"><h3>Cantidad Inicial</h3></td>
+          <td class="col-lg-2"><h3>Cantidad Ingresada</h3></td>
+          <td class="col-lg-2"><h3>Cantidad Sobrante</h3></td>
+          <td class="col-lg-2"><h3>Cantidad Vendida</h3></td>
+          <td class="col-lg-3"><h3>Monto total Vendido</h3></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <h2>Gastos:</h2>
+    <table class="table table-striped" width="150" border="0">
+      <tbody id="tbodygas">
+        <tr>
+          <td><h3>Descripción</h3></td>
+          <td><h3>Costo</h3></td>
+        </tr>
+      </tbody>
+    </table>
+    <button id="btnatras" class="btngoback">Atrás</button>
+  </section>
+</div>
+</body>
+</html>

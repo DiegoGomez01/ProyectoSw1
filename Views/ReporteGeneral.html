@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Reporte General</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../Js/jquery-3.2.1.js" language="javascript1.5"></script>
+<script src="../Js/Javascript2.js" language="javascript1.5"></script>
+<link rel="stylesheet" href="../Includes/Bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="../Css/estilosReportes.css">
+</head>
+
+<body onLoad="mostrarReporte()">
+<div id="containerFecha" class="container">
+  <section id="sectionRG">
+   <div id="containerTitulo">
+   	<h3 id="fechaRep">Fecha: </h3>
+   	<h1>Reporte General de Gastos y Ventas</h1>
+   </div>
+    <table class="table tabnb">
+      <tbody>
+        <tr>
+          <td>&nbsp;</td>
+          <td class="col-lg-5"><h2 class="stitulo" align="center">Totales <br> (Día)</h2></td>
+          <td class="col-lg-7"><h2 class="stitulo" align="center">Totales Acumulados (Mes)</h2></td>
+        </tr>
+        <tr>
+          <td><h2 class="stitulo">Ventas</h2></td>
+          <td><h2 id="ventasdia" align="center">00</h2></td>
+          <td><h2 id="ventasmes" align="center">00</h2></td>
+        </tr>
+        <tr>
+          <td><h2 class="stitulo">Gastos</h2></td>
+          <td><h2 id="gastosdia" align="center">00</h2></td>
+          <td><h2 id="gastosmes" align="center">00</h2></td>
+        </tr>
+        <tr>
+          <td><h2 class="stitulo">Ganancias</h2></td>
+          <td><h2 id="gananciasdia" align="center">00</h2></td>
+          <td><h2 id="gananciasmes" align="center">00</h2></td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="divbtns">
+      <button id="btnredetallado">Reporte Detallado</button>
+      <button id="btnresalir">Salir</button>
+    </div>
+  </section>
+</div>
+</body>
+</html>

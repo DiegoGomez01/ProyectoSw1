@@ -1,0 +1,170 @@
+@charset "utf-8";
+/* CSS Document */
+.date {
+	width: 200px;
+	margin-top: 50px;
+	margin-left: -9px;
+}
+#containerG {
+	height: 100vh;
+	width: 70vw;
+}
+#containerFecha {
+	margin: auto;
+	margin-top: 50px;
+	width: 60%;
+	height: 60%;
+	border-radius: 10px;
+}
+#fechac {
+	margin: auto;
+	width: 45%;
+	height: 50%;
+}
+#btngreporte {
+	background-color: #43a047;
+	color: white;
+	border: 0px;
+	margin-top: 40px;
+	margin-left: 30%;
+	width: 200px;
+	height: 40px;
+}
+section{
+	border: 1px solid white;
+	width: 100%;
+	height: 100%;
+}
+#divbtns{
+	margin: auto;
+}
+#btnredetallado{
+	margin-left: 220px;
+	border: 0px;
+	width: 190px;
+	height: 50px;
+	border-radius: 20px;
+	background-color:  #42A5F5;
+	font-size: 20px;
+	color: #FFFFFF;
+}
+#btnresalir{
+	margin-left: 60px;
+	border: 0px;
+	width: 100px;
+	height: 50px;
+	border-radius: 20px;
+	background-color:  #E53935;
+	font-size: 20px;
+	color: #FFFFFF;
+}
+#btnatras{
+	margin-top: 30px;
+	margin-left: 40%;
+	border: 0px;
+	width: 100px;
+	height: 50px;
+	border-radius: 20px;
+	background-color:  #E53935;
+	font-size: 20px;
+	color: #FFFFFF;
+}
+#btncancelar{
+	margin-top: 30px;
+	margin-left: 23%;
+	margin-bottom: 20px;
+	border: 0px;
+	width: 100px;
+	height: 50px;
+	border-radius: 20px;
+	background-color:  #E53935;
+	font-size: 20px;
+	color: #FFFFFF;
+}
+#btnconfirmarfac{
+	margin-top: 30px;
+	margin-left: 23%;
+	margin-bottom: 20px;
+	border: 0px;
+	width: 100px;
+	height: 50px;
+	border-radius: 20px;
+	background-color:  #43a047;
+	font-size: 20px;
+	color: #FFFFFF;
+}
+.tabnb td, .tabnb th {
+    border: 1px solid #FFFFFF;
+}
+.tabnb h2{
+	vertical-align: middle;
+	border: 1px solid #4D4D4D;
+	border-radius: 20px;
+	padding: 5px;
+	height: auto;
+}
+.stitulo{
+	background-color: #2979FF;
+	color: #FFFFFF;
+}
+#tbodyinv h3,#tbodyinv td{
+	text-align: center;
+}
+#tbodygas h3, #tbodygas td{
+	text-align: center;
+}
+#sectionMesas{
+	border: 1px solid #1E88E5;
+	padding: 0px;
+}
+#titulom {
+	margin-top: 0px;
+	background-color: #1E88E5;
+	color: #FFFFFF;
+	width: 100%;
+}
+#titulom h3{
+	margin-top: 0px;
+}
+.btnmesa:disabled{
+	background-color: #90CAF9;
+}
+.btnmesa{
+	margin-top: 50px;
+	margin-left: 50px;
+	color: #FFFFFF;
+	background-color: #1976D2;
+	border: 0px;
+	border-radius: 20px;
+	font-size: 30px;
+	width: 150px;
+	height: 100px;
+}
+#cajaFactura{
+	border: 1px solid #0D47A1;
+	border-radius: 15px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: auto;
+	width: 70%;
+}
+#titulo_factura{
+	font-size: 30px;
+	text-align: center;
+	margin-top: 0px;
+	color: #FFFFFF;
+	background-color: #0D47A1;
+	border-radius: 15px;
+	height: 40px;
+}
+#containerTpagar{
+	margin: auto;
+	width: 100%;
+	text-align: center;
+}
+#tbodyjuego, #tbodyproductos {
+	border-top: 1px solid #BDBDBD;
+}
+#tbodyjuego td, #tbodyproductos td{
+	border: 0px;
+}

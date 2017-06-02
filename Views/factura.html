@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Factura</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="../Js/jquery-3.2.1.js" language="javascript1.5"></script>
+<script src="../Js/Javascript2.js" language="javascript1.5"></script>
+<link rel="stylesheet" href="../Includes/Bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="../Css/estilosReportes.css">
+</head>
+
+<body onLoad="crearFactura()">
+<div id="containerG" class="container">
+  <section>
+    <div id= "cajaFactura">
+      <h3 id="titulo_factura">Factura - Academia de Billares el Clásico</h3>
+      <div id="containerTitulo">
+        <h3 id="fechafac">Fecha: </h3>
+        <h3 id="mesafac">Mesa: </h3>
+        <h3 id="cajerofac">Cajero: (Sesión no Iniciada)</h3>
+      </div>
+      <br>
+      <h2 style="font-weight: bold">Valor del Juego:</h2>
+      <table class="table">
+        <tbody id="tbodyjuego">
+          <tr>
+            <td><h3>Hora de Inicio:</h3></td>
+            <td><h3 id="fac_horai" align="right">00:00</h3></td>
+          </tr>
+          <tr>
+            <td><h3>Hora de Fin:</h3></td>
+            <td><h3 id="fac_horaf" align="right">00:00</h3></td>
+          </tr>
+          <tr>
+            <td><h3>Tiempo Total (h:mm):</h3></td>
+            <td><h3 id="fac_tiempo" align="right">0:00</h3></td>
+          </tr>
+          <tr>
+            <td><h3>Valor total del juego:</h3></td>
+            <td><h3 id="fac_valort" align="right">$00</h3></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <h2 style="font-weight: bold">Productos Pedidos:</h2>
+      <table class="table">
+        <tbody id="tbodyproductos">
+          <tr>
+            <td class="col-lg-3"><h3>Producto</h3></td>
+            <td class="col-lg-3"><h3>Cantidad</h3></td>
+            <td class="col-lg-3"><h3>Precio</h3></td>
+          </tr>
+        </tbody>
+        <tbody>
+          <tr>
+            <td colspan="2"><h3>Valor Total en Productos: </h3></td>
+            <td><h3 id="fac_valorp">$00</h3></td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <div id="containerTpagar">
+        <h2 style="font-weight: bold">Total A Pagar</h2>
+        <h3 id="fac_ttp">$0000</h3>
+      </div>
+      <br>
+      <br>
+      <button id="btnconfirmarfac">Confirmar</button>
+      <button id="btncancelar" class="btngoback">Cancelar</button>
+    </div>
+  </section>
+</div>
+</body>
+</html>
