@@ -27,7 +27,6 @@ var $venta_total;
 	$Sql="select * from producto inner join inventario on inventario.id_producto=producto.id where producto.id=$this->id_producto";
 	$resultado = pg_query($Conectar->Conexion,$Sql);
 	$Filas=pg_numrows($resultado);
-	$M = array();
 	for($cont=0;$cont<$Filas;$cont++)
 			 {
 			 $response=array("id"=>"".pg_result($resultado,$cont,0),
@@ -43,8 +42,7 @@ var $venta_total;
 							 ) ;
 			 $M[$cont]=$response;
 			 }
-		//echo json_encode($M);
-			 return $M;
+		echo json_encode($M);
 	}
 	public function aumentarInventario(){
 		$Conectar= new Conexion();
@@ -85,9 +83,9 @@ var $venta_total;
 		$Sql="update inventario set cantidad_actual=$num2 where id_producto= $this->id_producto";
 		$resultado3 = pg_query($Conectar->Conexion,$Sql);
 		if(!$resultado or !$resultado1 or !$resultado2 or !$resultado3){
-		return 'Error';
+		echo 'Error';
 		}else{
-			return 'Exito';
+			echo 'Exito';
 		}
 	}
 	

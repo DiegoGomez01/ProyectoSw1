@@ -22,13 +22,13 @@
 		public function testEditarProducto(){
 			$datos = array("id" => "0", "nombre" => "Prueba2", "precio" => "1500");
 			$producto = new producto($datos);
-			$comparar='Exito';
+			$comparar='Todo bn';
 			$this->assertEquals($comparar,$producto->EditarProducto());
 		}
 		public function testEliminarProducto(){
 			$datos = array("id" => "0", "nombre" => "", "precio" => "");
 			$producto = new producto($datos);
-			$comparar='Error';
+			$comparar='Exito';
 			$this->assertEquals($comparar,$producto->EliminarProducto());
 		}
 	}

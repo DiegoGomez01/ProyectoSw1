@@ -40,7 +40,7 @@ class mesa {
             $M[$i] = $res;
         }
         $res = $M;
-        return "PruebaArray";
+        echo json_encode($res);
     }
 
     function consultarMesa() {
@@ -60,7 +60,7 @@ class mesa {
             $M[$i] = $res;
         }
         $res = $M;
-        return $res;
+        echo json_encode($res);
     }
 
     function cambiarestado() {
@@ -72,7 +72,7 @@ class mesa {
             $Sql = "UPDATE mesa SET estado='$this->estado',hora_inicio='$this->hora_inicio' Where numero_mesa='$this->n_mesa';";
         }
         $result = pg_exec($conect->Conexion, $Sql);
-        return 'Exito';
+        echo 'Exito';
     }
 
 }

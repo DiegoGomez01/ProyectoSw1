@@ -6,17 +6,13 @@
 	<script src="../Js/Script1.js"></script>
 	<script src="../Includes/jquery-3.2.1.js"></script>
     </head>
-    <body bgcolor="#fffacd">
-        <div class="container Container">
+    <body >
+        <div class="container Container" style="background-color:transparent" align="center">
              <section ID="headerPrincipal">
-                <header class="jumbotron Header">
-                    <h1>BILLAR</h1>
-                </header>
              </section>
-
             <section ID="options" >
                 <h2 class="TextRegistrar" >Registrar gasto diario</h2>
-                <div ID="botonProducto" style="display:block;">
+                <div ID="botonProducto" style="display:block;margin-bottom:30px">
                     <button type="button" class="btn btn-primary active" onclick="registrarProducto()">Registrar Producto</button>
                     <section ID="obcionesProducto" style="display:none;">
                         <select id="selProductos">
@@ -24,7 +20,7 @@
                         </select>
                         <input type="text" class="form-control" placeholder="Valor total invertido" id="valort">
 
-                        <button type="button" class="btn btn-primary btn-md" onclick="registrarP()">Registrar</button>
+                        <button type="button" class="btn btn-primary btn-md" onclick="registrarP()" >Registrar</button>
                     </section>
                 </div>
                 <div id="botonServicioGeneral"  style="display:block;">

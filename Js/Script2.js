@@ -2,14 +2,12 @@ var cantidad = 0;
 function consultar_Productos() {
     document.getElementById("options").style.display = "none";
     document.getElementById("productos").style.display = "block";
-	
+
     $.post("../Controllers/controladora3.php", {
         opcion: 4
     }
     , function (respuesta) {
-		alert(respuesta);
         var datos = eval(respuesta);
-		alert(datos[0].nombre);
         var content = "";
         for (var i in datos) {
             content += '<tr><td> <input type="checkbox" text="' + datos[i].nombre + '" value="' + datos[i].nombre + '" ' +
@@ -24,7 +22,7 @@ function consultar_Productos() {
     )
 }
 
-function SolicitarPedido() {
+function SolicitarPedido(numero) {
     for (var i = 0; i < cantidad; i++)
     {
         if (document.getElementById("c" + i).checked == true)
@@ -32,13 +30,15 @@ function SolicitarPedido() {
             $.post("../Controllers/controladora3.php", {
                 opcion: 5,
                 producto: document.getElementById("c" + i).value,
-                mesa: 1,
+                mesa: numero,
                 cantidad: document.getElementById("in" + i).value
             }
             , function (respuesta) {
-                alert("Resgistrado Adecuadamente"+respuesta);
+                alert("Se Realizo El Pedido Correctamente" + respuesta);
+                location.reload();
             }
             )
         }
     }
+
 }

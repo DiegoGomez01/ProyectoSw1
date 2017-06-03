@@ -51,7 +51,7 @@ overflow-y:scroll;
 .section
 {
 height:70%;
-background-color:#FFFFFF;
+background-color:#FFFFFF !important;
 align-items:center;
 align-content:center;
 

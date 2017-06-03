@@ -43,7 +43,7 @@ class pedido_mesa {
             $M[$i] = $res;
         }
         $res = $M;
-        return $res;
+        echo json_encode($res);
     }
 }
 

@@ -11,7 +11,7 @@
 			$datos = array("fecha" => "2017-05-31", "gasto_dia" => "", "gasto_totales" => ""
 				,"total_vendido" => "", "total_actual" => "");
 			$reporte = new reporte($datos);
-			$comparar='HAY REGISTROSs';
+			$comparar='HAY REGISTROSss';
 			$this->assertEquals($comparar,$reporte->hayRegistroReporte());
 		}
 	}

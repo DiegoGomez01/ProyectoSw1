@@ -1,4 +1,5 @@
 <?php
+
 include_once("../Models/inventario2.php");
 include_once("../Models/gasto.php");
 include_once("../Models/reporte.php");
@@ -21,6 +22,8 @@ class control {
             $inv->consultarInventario();
         } else if ($op == 1) {
             $inv->hayRegistroInventario();
+        } else if ($op == 2) {
+            $inv->ventasDia();
         }
     }
 
@@ -30,6 +33,8 @@ class control {
             $gas->consultarGastos();
         } else if ($op == 1) {
             $gas->hayRegistroGastos();
+        } else if ($op == 2) {
+            $gas->gastosDia();
         }
     }
 
@@ -39,6 +44,10 @@ class control {
             $rep->consultarReporte();
         } else if ($op == 1) {
             $rep->hayRegistroReporte();
+        } else if ($op == 2) {
+            $rep->consultarVentasyGastos();
+        } else if ($op == 3) {
+            $rep->crearReporte();
         }
     }
 
@@ -61,6 +70,7 @@ class control {
             $p_mesa->consultarMesa();
         }
     }
+
 }
 
 $Datos = $_REQUEST;

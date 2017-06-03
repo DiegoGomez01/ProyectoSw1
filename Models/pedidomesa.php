@@ -24,7 +24,7 @@ class pedidomesa{
             $result="".pg_result($registro,0,0);
             echo $result;
 
-            $this->Sql = "INSERT INTO \"pedido_mesa\" VALUES(current_timestamp,$mesa,$result,$cantidad,'En espera');";
+            $this->Sql = "INSERT INTO \"pedido_mesa\" VALUES(current_timestamp,$mesa,$result,$cantidad,'Solicitado');";
             pg_exec($this->conexion->getConexion(), $this->Sql);
         }
     }

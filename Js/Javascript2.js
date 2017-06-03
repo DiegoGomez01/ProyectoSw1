@@ -152,6 +152,7 @@ function mostrarReporteDetallado() {
     });
 }
 function mostrarMesas() {
+
     $.post("../Controllers/controladora2.php", {n_mesa: null, estado: null, hora_inicio: null, precio: 0, tcontrol: "mesa", op: 0}, function (Respuesta) {
         var datos = jQuery.parseJSON(Respuesta);
         var container = document.getElementById('containerMesas');
@@ -223,7 +224,7 @@ function crearFactura() {
                 tbodyContenido.appendChild(elementotr);
             }
             document.getElementById('fac_valorp').innerHTML = '$' + sumaprods;
-            document.getElementById('fac_ttp').innerHTML = '$' + (vjuego + sumaprods);
+            document.getElementById('fac_ttp').innerHTML = '$' + ((vjuego * 1) + (sumaprods * 1));
         });
     });
 }
@@ -251,4 +252,27 @@ function leerUrl(url) {
         parms[n].push(nv.length === 2 ? v : null);
     }
     return parms;
+}
+
+function terminarDia() {
+    var fechaact = getFechaHoy(true, false);
+    var fechames = fechaact.substr(0, 7) + "-01";
+    var gastos_dia;
+    var ventas_dia;
+    $.post("../Controllers/controladora2.php", {fecha: "" + fechaact, gasto_dia: 0, descripcion: '', valor_invertido: 0, tcontrol: "gasto", op: 2}, function (Respuesta) {
+        var datos = jQuery.parseJSON(Respuesta);
+        gastos_dia = datos[0].gasto_dia;
+        $.post("../Controllers/controladora2.php", {fecha: "" + fechaact, id_producto: 0, cinicial: 0, cingresada: 0, cactual: 0, cvendido: 0, vtotal: 0, tcontrol: "inventario", op: 2}, function (Respuesta) {
+            var datos = jQuery.parseJSON(Respuesta);
+            ventas_dia = datos[0].ventas_dia;
+            $.post("../Controllers/controladora2.php", {fecha: "" + fechames, gasto_dia: 0, gasto_totales: 0, total_vendido: 0, total_actual: 0, tcontrol: "reporte", op: 2}, function (Respuesta) {
+                var datos = jQuery.parseJSON(Respuesta);
+                $.post("../Controllers/controladora2.php", {fecha: "" + fechaact, gasto_dia: gastos_dia, gasto_totales: "" + datos[0].gastos_totales, total_vendido: ventas_dia, total_actual: "" + datos[0].ventas_totales, tcontrol: "reporte", op: 3}, function (Respuesta) {
+                    if (Respuesta === 'Exito') {
+                        alert('La informacion fue guardada Correctamente');
+                    }
+                });
+            });
+        });
+    });
 }

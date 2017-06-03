@@ -1,7 +1,9 @@
 <?php
+
 include_once("Conexion.php");
 
 class gasto {
+
     var $fecha;
     var $descripcion;
     var $valor_invertido;
@@ -22,7 +24,7 @@ class gasto {
     function consultarGastos() {
         $conect = new Conexion();
         $conect->conectar();
-        $Sql = "select * from gasto_diario where \"fecha\"='$this->fecha';";
+        $Sql = "select * from gasto_diario where \"fecha\">='$this->fecha' and \"fecha\"<='$this->fecha 23:59';";
         $M = array();
         $result = pg_exec($conect->Conexion, $Sql);
         $fila = pg_num_rows($result);
@@ -35,7 +37,7 @@ class gasto {
             $M[$i] = $res;
         }
         $res = $M;
-        return $res;
+        echo json_encode($res);
     }
 
     function hayRegistroGastos() {
@@ -44,10 +46,29 @@ class gasto {
         $Sql = "select * from gasto_diario where \"fecha\"='$this->fecha';";
         $result = pg_query($conect->Conexion, $Sql);
         if (pg_num_rows($result) > 0) {
-            return "Exito";
+            return TRUE;
         } else {
-            return "Error";
+            return FALSE;
         }
     }
+
+    function gastosDia() {
+        $conect = new Conexion();
+        $conect->conectar();
+        $Sql = "select sum(valor_invertido) from gasto_diario where \"fecha\">='$this->fecha';";
+        $M = array();
+        $result = pg_exec($conect->Conexion, $Sql);
+        $fila = pg_num_rows($result);
+        for ($i = 0; $i < $fila; $i++) {
+            $res = array(
+                "gasto_dia" => "" . pg_result($result, $i, 0)
+            );
+            $M[$i] = $res;
+        }
+        $res = $M;
+        echo json_encode($res);
+    }
+
 }
+
 ?>

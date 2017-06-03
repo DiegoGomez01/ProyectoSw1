@@ -8,9 +8,9 @@ class Conexion {
          $this->Mensaje="Exito";
     }
 
-    public function conectar() {//original Billar user=postgres password=openpg
+    public function conectar() {
         $Mensaje="Exito";
-        $this->Conexion = pg_connect('dbname=proyectosw user=sistemas password=programacion3 host=localhost port=5432');
+        $this->Conexion = pg_connect('dbname=Billar user=postgres password=openpg host=localhost port=5432');
         if (!$this->Conexion)
             echo json_encode("Error al conectar");
     }

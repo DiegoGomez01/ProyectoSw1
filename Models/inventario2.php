@@ -65,5 +65,22 @@ class inventario {
             return FALSE;
         }
     }
+    
+    function ventasDia() {
+        $conect = new Conexion();
+        $conect->conectar();
+        $Sql = "select sum(venta_total) from inventario where \"fecha\"='$this->fecha';";
+        $M = array();
+        $result = pg_exec($conect->Conexion, $Sql);
+        $fila = pg_num_rows($result);
+        for ($i = 0; $i < $fila; $i++) {
+            $res = array(
+                "ventas_dia" => "" . pg_result($result, $i, 0)
+            );
+            $M[$i] = $res;
+        }
+        $res = $M;
+        echo json_encode($res);
+    }
 }
 ?>
